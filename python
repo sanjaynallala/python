@@ -1,0 +1,1887 @@
+1
+"Given a string s containing just the characters '(', ')', '{', '}', '[' and
+']', determine if the input string is valid using Stack.
+
+An input string is valid if:
+I.Open brackets must be closed by the same type of brackets.
+II.Open brackets must be closed in the correct order.
+III.Every close bracket has a corresponding open bracket of the same type.
+
+Example 2:
+Input: s = ""()[]{}""Output: true
+
+Example 3:
+Input: s = ""(]""
+Output: false
+An input string is valid if: 
+I.Open brackets must be closed by the same type of brackets.
+II.Open brackets must be closed in the correct order.
+III.Every close bracket has a corresponding open bracket of the same type.
+
+Example 1:
+Input: s = ""()""
+Output: true
+
+Example 2:
+Input: s = ""()[]{}""
+Output: true
+
+Example 3:
+Input: s = ""(]""
+Output: false"
+
+
+ Ans
+def isValid(s: str) -> bool:
+    stack = []
+    bracket_map = {')': '(', '}': '{', ']': '['}
+    
+    for char in s:
+        if char in bracket_map.values():
+            stack.append(char)
+        elif char in bracket_map.keys():
+            if not stack or bracket_map[char] != stack.pop():
+                return False
+        else:
+            # Ignore any other characters in the input string
+            continue
+    
+    return not stack
+
+# Test cases
+print(isValid("()"))        # Output: true
+print(isValid("()[]{}"))    # Output: true
+print(isValid("(]"))        # Output: false
+
+
+
+2
+Find the year of the given Anniversary is a leap year or not. If leap year then print the
+next Anniversary, if not leap year then print the previous Anniversary.
+Sample Input:xx
+Enter Date: Sample Output:
+Given Anniversary Year: Non Leap Year. Anniversary Date: 04/11/1946
+
+
+Ans
+date = input("Enter the date to be checked: ")
+c=date.split("/")
+b = list(map(int,c))
+input_year=(b[2])
+
+if(input_year%4 == 0):
+    if(input_year%100 == 0):
+        if(input_year%400 == 0):
+            print("%d is Leap Year" %input_year)
+        else:
+            print("%d is not the Leap Year" %input_year)
+    else:
+        print("%d is the Leap Year" %input_year)
+else:
+    print("%d is not the Leap Year" %input_year)
+
+x=input_year%4
+if x!=0:
+    print("Previous Leap year:", input_year-x)
+else:
+    print("Next leap year:", input_year+4)
+
+
+
+
+3
+Write a program to print all the Non-Prime numbers between A and B?
+Sample Input: A = 12 B = 19
+Sample Output:
+14, 15, 16, 18
+
+
+
+
+ ANS
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def print_non_primes(A, B):
+    non_primes = []
+    for num in range(A, B+1):
+        if not is_prime(num):
+            non_primes.append(num)
+    print(", ".join(map(str, non_primes)))
+
+# Sample Input
+A = 12
+B = 19
+
+# Sample Output
+print_non_primes(A, B)
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4
+Print the pattern
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+
+
+ANS
+def print_pattern(n):
+    for i in range(1, n + 1):
+        for j in range(1, i + 1):
+            print(j, end=" ")
+        print()
+
+# Sample Input
+rows = 5
+
+# Printing the pattern
+print_pattern(rows)
+
+5
+Write a program to print the total amount available in the ATM machine with the conditions applied.
+Total denominations are 2000, 500, 200, 100, get the denomination priority from the user and the total number of notes from the user to display the total available balance to the user
+Sample Input:
+Enter the 1st Denomination: 500 Enter the 1st Denomination number of notes: 4
+Enter the 2nd Denomination:  100 Enter the 2nd Denomination number of notes: 20
+Enter the 3rd Denomination: 200 Enter the 3rd Denomination number of notes: 32
+Enter the 4th Denomination: 2000 Enter the 4th Denomination number of notes: 1
+Sample Output:
+
+Total Available Balance in ATM: 12400"
+
+
+
+
+Ans:
+denominations = [2000, 500, 200, 100]
+total_balance = 0
+for i in range(4):
+    
+    denomination = int(input(f"Enter the {i+1}st Denomination: "))
+    number_of_notes = int(input(f"Enter the {i+1}st Denomination number of notes: "))
+    total_balance += denomination * number_of_notes
+
+print(f"Total Available Balance in ATM: {total_balance}")
+
+
+
+6
+Write a Python program to find the maximum of three numbers entered by the user.
+Input : 3 7 2
+Output : 7
+
+Test Cases
+5 8 2
+10 12 16
+0.1 10 0.4
+a b z
+
+Ans:
+
+
+
+
+def find_max_of_three_numbers():
+    try:
+        a, b, c = map(float, input("Enter three numbers separated by space: ").split())
+        maximum = max(a, b, c)
+        print("Maximum of the three numbers:", maximum)
+    except ValueError:
+        print("Invalid input. Please enter three valid numbers separated by space.")
+
+# Test Cases
+find_max_of_three_numbers()
+find_max_of_three_numbers()
+find_max_of_three_numbers()
+find_max_of_three_numbers()
+
+
+
+7
+"Write a Python program to find the Nth Fibonacci number. The program should take the value of N as input where n=8
+Output 0 1 1 2 3 5 8 13"
+
+Ans:
+def fibonacci(n):
+    fib_series = []
+    if n <= 0:
+        print("incorrect input")
+    elif n == 1:
+        fib_series = [0]
+    elif n == 2:
+        fib_series = [0, 1]
+    else:
+        fib_series = [0, 1]
+        for i in range(2, n):
+            fib_series.append(fib_series[-1] + fib_series[-2])
+    return fib_series
+
+n = int(input("Enter the number of terms for Fibonacci series: "))
+fib_series = fibonacci(n)
+print("Fibonacci series up to", n, "terms:", fib_series)
+
+
+
+
+
+
+8
+Write a Python program to create a basic calculator that can perform addition, subtraction, multiplication, and division using functions.
+
+
+Ans:
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    if y == 0:
+        return "Error! Division by zero."
+    else:
+        return x / y
+
+def calculator():
+    print("Select operation:")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+
+    choice = input("Enter choice (1/2/3/4): ")
+
+    num1 = float(input("Enter first number: "))
+    num2 = float(input("Enter second number: "))
+
+    if choice == '1':
+        print("Result:", add(num1, num2))
+    elif choice == '2':
+        print("Result:", subtract(num1, num2))
+    elif choice == '3':
+        print("Result:", multiply(num1, num2))
+    elif choice == '4':
+        print("Result:", divide(num1, num2))
+    else:
+        print("Invalid input")
+
+# Test the calculator
+calculator()
+
+
+
+
+
+
+9
+Write a program to find whether the person is eligible for vote or not. And if that
+a particular  person is not eligible, then print how many years are left to be eligible.
+Sample Input:
+Enter your age: 7
+Sample output:
+You are allowed to vote after 11 years
+Test cases:
+a) 25
+b) Eighteen
+c) 12
+d) -18
+e) 5. 34.5
+
+
+Ans:
+def check_voting_eligibility(age):
+    voting_age = 18
+    if age >= voting_age:
+        print("You are eligible to vote.")
+    else:
+        years_left = voting_age - age
+        print(f"You are allowed to vote after {years_left} years.")
+
+# Sample Input
+age = int(input("Enter your age: "))
+
+# Check eligibility
+check_voting_eligibility(age)
+
+
+
+
+
+
+
+
+
+
+
+
+10
+Write a program to reverse a word using loop?(Not to use inbuilt functions)
+Sample Input:
+String: TEMPLE
+Sample Output:
+Reverse String: ELPMET
+Test cases:
+a) SIGN UP
+b) AT-LEAST
+c) 1245
+d) !@#$%
+e) 145*999=144855
+
+Ans:
+
+
+def reverse_string(word):
+    reversed_word = ""
+    for i in range(len(word) - 1, -1, -1):
+        reversed_word += word[i]
+    return reversed_word
+
+# Test cases
+test_cases = ["SIGN UP", "AT-LEAST", "1245", "!@#$%", "145*999=144855"]
+
+for test_case in test_cases:
+    print(f"Input: {test_case}")
+    print("Reverse String:", reverse_string(test_case))
+ 
+
+
+11
+Find the LCM and GCD of n numbers?
+Sample Input:
+N value = 2
+Number 1 = 16
+Number 2 = 20
+Sample Output:
+LCM = 80
+GCD = 4
+Test cases:
+a) N = 3, {12, 25, 30}
+b) N = 2, {52, 25, 63}
+c) N = 3, {17, 19, 11}
+d) N = -2, {52, 60}
+e) N = 2, {30, 45}
+
+
+Ans:
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+def find_lcm_gcd(numbers):
+    lcm_result = 1
+    gcd_result = numbers[0]
+
+    for num in numbers:
+        lcm_result = lcm(lcm_result, num)
+        gcd_result = gcd(gcd_result, num)
+
+    return lcm_result, gcd_result
+
+# Sample Input
+n = int(input("N value: "))
+numbers = []
+for i in range(1, n + 1):
+    numbers.append(int(input(f"Number {i}: ")))
+
+# Calculate LCM and GCD
+LCM, GCD = find_lcm_gcd(numbers)
+
+# Sample Output
+print("LCM =", LCM)
+print("GCD =", GCD)
+
+
+
+
+
+
+12  .Write a program to convert Decimal number equivalent to Binary number and octal numbers?
+Sample Input:
+Decimal Number: 15
+Sample Output:
+Binary Number = 1111
+Octal = 17
+Test cases:
+a) 111
+b) 15.2
+c) 0
+d) B12
+e) 1A.2
+
+
+
+def decimal_to_binary(decimal_num):
+    binary_num = bin(decimal_num).replace("0b", "")
+    return binary_num
+
+def decimal_to_octal(decimal_num):
+    octal_num = oct(decimal_num).replace("0o", "")
+    return octal_num
+
+# Taking input from the user
+decimal_number = int(input("Enter a decimal number: "))
+
+# Converting to binary and octal
+binary_number = decimal_to_binary(decimal_number)
+octal_number = decimal_to_octal(decimal_number)
+
+# Displaying the results
+print("Binary equivalent:", binary_number)
+print("Octal equivalent:", octal_number)
+
+
+
+
+
+
+
+13 Print the pattern
+2
+2 4
+2 4 6 
+2 4 6 8
+2 4 6 8 10
+
+Ans:
+
+rows = 5
+
+for i in range(1, rows + 1):
+    for j in range(1, i + 1):
+        print(j * 2, end=' ')
+    print()
+
+
+
+
+
+ 
+
+
+
+
+14 Write a Python Program to remove duplicates from the sorted array
+Sample Input: Array = {15, 14, 25, 14, 32, 14, 31} Sample Output: Sorted Array = {14, 15, 25, 31, 32}
+Test cases:
+1. {16, 16, 16 16, 16}
+2. {0, 0, 0, 0}
+3. {-12, -78, -35, -42}
+4. {1,2,3,7,8,9,4,5,6}
+5. {1-2,2-3,3-4,4-5,5-6"’.0.z  
+
+Ans:
+
+def remove_duplicates(sorted_array):
+    if not sorted_array:
+        return []
+    
+    unique_array = [sorted_array[0]]
+    for num in sorted_array[1:]:
+        if num != unique_array[-1]:
+            unique_array.append(num)
+    
+    return unique_array
+
+# Test cases
+test_cases = [
+    [15, 14, 25, 14, 32, 14, 31],
+    [16, 16, 16, 16, 16],
+    [0, 0, 0, 0],
+    [-12, -78, -35, -42],
+    [1, 2, 3, 7, 8, 9, 4, 5, 6],
+    ['1-2', '2-3', '3-4', '4-5', '5-6', "'0.z"]
+]
+
+for idx, arr in enumerate(test_cases, start=1):
+    sorted_array = sorted(arr)
+    unique_array = remove_duplicates(sorted_array)
+    print(f"Test Case {idx}: Sorted Array = {unique_array}")
+
+
+
+
+
+
+
+
+
+
+
+15 Write a program to find the number of special characters in the given statement
+Sample Input: Given statement: Modi Birthday @ September 17, #&$% is the wishes code for him.
+Sample Output:Number of special Characters: 5
+
+Ans:
+
+
+
+def count_special_characters(statement):
+    special_characters = 0
+
+    # Define special characters
+    special_chars = "!@#$%^&*()-_+=~`[]{}|:;\"'<>,.?/"
+
+    # Count the special characters in the statement
+    for char in statement:
+        if char in special_chars:
+            special_characters += 1
+
+    return special_characters
+
+# Sample Input
+given_statement = "Modi Birthday @ September 17 #&$% "
+
+# Calculate the number of special characters
+special_chars_count = count_special_characters(given_statement)
+
+# Sample Output
+print("Number of special Characters:", special_chars_count)
+
+
+
+
+
+
+
+
+
+
+
+16 Sample Input:
+Enter the numbers 4 , 54 ,29, 71, 7, 59, 98, 23
+Sample Output:
+Composite number:3 Prime number:5
+Test cases:
+1.   33, 41, 52, 61,73,90
+2.  TEN, FIFTY, SIXTY-ONE, SEVENTY-SEVEN, NINE
+3.  45, 87, 09, 5.0 ,2.3, 0.4
+4. -54, -76, -97, -23, -33, -98
+5.  45, 73, 00, 50, 67, 44"
+
+Ans:
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def count_composite_and_prime(numbers):
+    composite_count = 0
+    prime_count = 0
+
+    for num in numbers:
+        if num < 2:
+            continue
+        if is_prime(num):
+            prime_count += 1
+        else:
+            composite_count += 1
+
+    return composite_count, prime_count
+
+# Sample Input
+numbers = [4, 54, 29, 71, 7, 59, 98, 23]
+
+# Count composite and prime numbers
+composite_count, prime_count = count_composite_and_prime(numbers)
+
+# Sample Output
+print("Composite number:", composite_count, "Prime number:", prime_count)
+
+
+
+
+
+
+
+
+
+
+
+
+
+17
+ 
+Sample Input:
+M = 50
+N = 100
+K = 7
+Sample Output:
+50, 58, 65, 72,
+Test cases:
+M = 15, N = 05, K = 02
+.M = 25, N = 50, K = 04
+M = 15, N = 100, K = -02
+M = 0 , N = 0 , K = 2
+M = 200 , N = 200 , K = 50
+
+Ans:
+
+def generate_sequence(M, N, K):
+    sequence = []
+    num = M
+    while num <= N:
+        sequence.append(num)
+        num += K
+    return sequence
+
+# Sample Input
+M = 50
+N = 100
+K = 7
+
+# Generate the sequence
+sequence = generate_sequence(M, N, K)
+
+# Sample Output
+print(", ".join(map(str, sequence)))
+
+
+
+
+
+
+
+
+18
+Write a program for matrix addition?
+Sample Input:
+Mat1 = 1 2
+5 3
+Mat2 = 2 3
+4 1
+Sample Output:
+Mat Sum = 3 5
+9 4
+
+Ans:
+
+
+
+
+
+def matrix_addition(mat1, mat2):
+    if len(mat1) != len(mat2) or len(mat1[0]) != len(mat2[0]):
+        return "Matrices should have the same dimensions for addition."
+
+    result = []
+
+    for i in range(len(mat1)):
+        row = []
+        for j in range(len(mat1[0])):
+            row.append(mat1[i][j] + mat2[i][j])
+        result.append(row)
+
+    return result
+
+# Sample Input
+Mat1 = [[1, 2],
+        [5, 3]]
+
+Mat2 = [[2, 3],
+        [4, 1]]
+
+# Matrix Addition
+result_matrix = matrix_addition(Mat1, Mat2)
+
+# Sample Output
+print("Mat Sum =", '\n'.join([' '.join(map(str, row)) for row in result_matrix]))
+
+
+
+
+
+
+
+
+
+
+
+19
+Write a program that would sort a list of names in alphabetical order Ascending or Descending, choice get from the user?
+Sample Input:
+Banana, Carrot, Radish, Apple Jack
+Order(A/D) : A
+Sample Output:
+Apple Banana Carrot Jack Radish
+
+Ans:
+
+
+def sort_names(names, order):
+    if order.upper() == 'A':
+        return sorted(names)
+    elif order.upper() == 'D':
+        return sorted(names, reverse=True)
+    else:
+        return "Invalid choice. Please enter 'A' for ascending order or 'D' for descending order."
+
+# Sample Input
+names = input("Enter the list of names separated by commas: ").split(', ')
+order = input("Enter the order (A for ascending, D for descending): ")
+
+# Sorting names
+sorted_names = sort_names(names, order)
+
+# Sample Output
+print("Sorted names:", ' '.join(sorted_names))
+
+
+
+
+
+
+
+
+
+
+
+20
+Write a program to print the multiplication table of number m up to n.
+Sample Input:
+M = 4
+N = 5
+Sample Output:
+1x4=4
+2x4=8
+3x4=12
+4x4=16
+5x4=20
+Test cases:
+M = 6, N = -3
+M = -3, N = 5
+M = 4, N = 0
+M = 0, N = 0
+M = -5, N = -5
+
+Ans:
+
+def multiplication_table(m, n):
+    for i in range(1, n + 1):
+        print(f"{i}x{m}={i * m}")
+
+# Sample Input
+M = 4
+N = 5
+
+# Print multiplication table
+multiplication_table(M, N)
+
+
+
+
+
+
+
+
+
+
+
+21
+Print the pattern
+*
+* *
+* * *
+* * * *
+* * * * *
+
+
+Ans: 
+def print_pattern(rows):
+    for i in range(1, rows + 1):
+        for j in range(1, i + 1):
+            print("*", end=" ")
+        print()
+
+# Sample Input
+rows = 5
+
+# Printing the pattern
+print_pattern(rows)
+
+
+
+
+
+
+
+
+
+22
+Write a program to print the number of vowels and number of consonants in the given
+statement and which is maximum?
+Sample Input: Saveetha School of Engineering Sample Output:
+Number of vowels = 12 Number of Consonants = 15
+
+Ans: 
+
+def count_vowels_and_consonants(statement):
+    vowels = 0
+    consonants = 0
+
+    # Convert the statement to lowercase for easier comparison
+    statement = statement.lower()
+
+    # Define the set of vowels
+    vowel_set = {'a', 'e', 'i', 'o', 'u'}
+
+    # Iterate through each character in the statement
+    for char in statement:
+        # Check if the character is an alphabet
+        if char.isalpha():
+            # Check if the character is a vowel
+            if char in vowel_set:
+                vowels += 1
+            else:
+                consonants += 1
+
+    return vowels, consonants
+
+# Sample input
+input_statement = "Saveetha School of Engineering"
+
+# Count vowels and consonants
+num_vowels, num_consonants = count_vowels_and_consonants(input_statement)
+
+# Print the results
+print("Number of vowels =", num_vowels)
+print("Number of consonants =", num_consonants)
+
+# Determine which is maximum
+if num_vowels > num_consonants:
+    print("Vowels are maximum.")
+elif num_consonants > num_vowels:
+    print("Consonants are maximum.")
+else:
+    print("Both vowels and consonants are equal.")
+
+
+
+
+
+
+def count_vowels_and_consonants(statement):
+    vowels = 'aeiouAEIOU'
+    num_vowels = 0
+    num_consonants = 0
+    for char in statement:
+        if char.isalpha():
+            if char in vowels:
+                num_vowels += 1
+            else:
+                num_consonants += 1
+
+    return num_vowels, num_consonants
+    statement = input("Enter a statement: ")
+    num_vowels, num_consonants = count_vowels_and_consonants(statement)
+    print("Number of vowels:", num_vowels)
+    print("Number of consonants:", num_consonants)
+
+
+
+
+23
+ Get the input and choice from the user.
+Sample Input:
+X = 2
+N = 4
+Choice : 2 Sample Output:
+Add(X,N) = 6
+Test cases:
+1. X = 0 , N = 4
+2. X = 5 , N = 0
+3. X = -3 , N = 3
+4. X = 0 , N = 0
+5. X = 123, N = 123"
+
+Ans: 
+
+def add(x, n):
+    return x + n
+
+def multiply(x, n):
+    return x * n
+
+def subtract(x, n):
+    return x - n
+
+def divide(x, n):
+    if n != 0:
+        return x / n
+    else:
+        return "Cannot divide by zero"
+
+def get_input_and_choice():
+    x = int(input("Enter the value of X: "))
+    n = int(input("Enter the value of N: "))
+    choice = int(input("Enter your choice (1: Add, 2: Multiply, 3: Subtract, 4: Divide): "))
+    return x, n, choice
+
+def main():
+    x, n, choice = get_input_and_choice()
+    if choice == 1:
+        result = add(x, n)
+    elif choice == 2:
+        result = multiply(x, n)
+    elif choice == 3:
+        result = subtract(x, n)
+    elif choice == 4:
+        result = divide(x, n)
+    else:
+        result = "Invalid choice"
+    print(f"Result of operation: {result}")
+
+# Test cases
+test_cases = [
+    (0, 4),
+    (5, 0),
+    (-3, 3),
+    (0, 0),
+    (123, 123)
+]
+
+for x, n in test_cases:
+    print(f"\nTest Case: X = {x}, N = {n}")
+    main()
+
+
+
+
+
+
+
+
+
+
+
+24
+Write a program to read the numbers until -1 is encountered. Find the average of positive numbers and negative numbers entered by the user.
+Sample Input:
+Enter -1 to exit…
+Enter the number: 7
+Enter the number: -2
+Enter the number: 9
+Enter the number: -8
+Enter the number: -6
+Enter the number: -4
+Enter the number: 10
+Enter the number: -1
+Sample Output:
+The average of negative numbers is: -5.0
+The average of positive numbers is : 8.66666667
+Test cases:
+1. -1,43, -87, -29, 1, -9
+2. 73, 7-6,2,10,28,-1
+3. -5, -9, -46,2,5,0
+4. 9, 11, -5, 6, 0,-1
+5. -1,-1,-1,-1,-1"
+
+
+Ans:
+
+def calculate_average(numbers):
+    if len(numbers) == 0:
+        return 0
+    return sum(numbers) / len(numbers)
+
+def main():
+    positive_numbers = []
+    negative_numbers = []
+    
+    while True:
+        num = int(input("Enter the number: "))
+        if num == -1:
+            break
+        elif num > 0:
+            positive_numbers.append(num)
+        else:
+            negative_numbers.append(num)
+    
+    avg_positive = calculate_average(positive_numbers)
+    avg_negative = calculate_average(negative_numbers)
+    
+    print("The average of negative numbers is:", avg_negative)
+    print("The average of positive numbers is:", avg_positive)
+
+# Test cases
+test_cases = [
+    [-1, 43, -87, -29, 1, -9],
+    [73, 76, 2, 10, 28, -1],
+    [-5, -9, -46, 2, 5, 0],
+    [9, 11, -5, 6, 0, -1],
+    [-1, -1, -1, -1, -1]
+]
+
+for i, test_case in enumerate(test_cases):
+    print("\nTest Case", i+1)
+    for num in test_case:
+        print("Enter the number:", num)
+        if num == -1:
+            break
+    main()
+
+
+
+
+
+
+
+
+
+
+
+25
+Write a program to Reverse Words in a String
+Given an input string s, reverse the order of the words.
+Input: s = ""the sky is blue""
+Output: ""blue is sky the"""
+
+Ans: 
+
+def reverse_words(s):
+    # Split the string into words
+    words = s.split()
+
+    # Reverse the order of words
+    reversed_words = words[::-1]
+
+    # Join the reversed words back into a single string
+    reversed_string = " ".join(reversed_words)
+
+    return reversed_string
+
+# Test Input
+s = "the sky is blue"
+
+# Output
+print(reverse_words(s))  # Output: "blue is sky the"
+
+
+
+
+
+
+
+
+
+26
+"Write a program to print the number of vowels and number of consonants in the given
+statement and which is maximum?
+Sample Input:
+Saveetha School of Engineering Sample Output:
+Number of vowels = 12 Number of Consonants = 15"
+
+Ans:
+def count_vowels_and_consonants(statement):
+    vowels = 0
+    consonants = 0
+
+    # Convert the statement to lowercase for easier comparison
+    statement = statement.lower()
+
+    # Define the set of vowels
+    vowel_set = {'a', 'e', 'i', 'o', 'u'}
+
+    # Iterate through each character in the statement
+    for char in statement:
+        # Check if the character is an alphabet
+        if char.isalpha():
+            # Check if the character is a vowel
+            if char in vowel_set:
+                vowels += 1
+            else:
+                consonants += 1
+
+    return vowels, consonants
+
+# Sample input
+input_statement = "Saveetha School of Engineering"
+
+# Count vowels and consonants
+num_vowels, num_consonants = count_vowels_and_consonants(input_statement)
+
+# Print the results
+print("Number of vowels =", num_vowels)
+print("Number of consonants =", num_consonants)
+
+# Determine which is maximum
+if num_vowels > num_consonants:
+    print("Vowels are maximum.")
+elif num_consonants > num_vowels:
+    print("Consonants are maximum.")
+else:
+    print("Both vowels and consonants are equal.")
+
+
+
+
+
+
+
+
+
+
+
+27
+Write a program to calculate tax given the following conditions:
+If income is less than or equal to 1,50,000 then no tax
+If taxable income is 1,50,001 – 3,00,000 the charge 10% tax
+If taxable income is 3,00,001 – 5,00,000 the charge 20% tax
+If taxable income is above 5,00,001 then charge 30% tax
+
+Sample Input:
+Enter the income:200000
+Sample Output:
+Tax= 20000
+Test cases:
+a) 400700
+b) 2789239
+c) 150000
+d) 00000
+e) -125486
+
+Ans:
+
+def calculate_tax(income):
+    if income <= 150000:
+        tax = 0
+    elif 150001 <= income <= 300000:
+        tax = (income - 150000) * 0.1
+    elif 300001 <= income <= 500000:
+        tax = 15000 + (income - 300000) * 0.2
+    else:
+        tax = 45000 + (income - 500000) * 0.3
+    return tax
+
+# Test Cases
+test_cases = [400700, 2789239, 150000, 0, -125486]
+
+for income in test_cases:
+    print("Income:", income)
+    if income <= 0:
+        print("Invalid income")
+    else:
+        tax = calculate_tax(income)
+        print("Tax =", tax)
+
+
+
+
+
+
+
+
+
+28
+Write a program to count number of space, line, vowels and consonants in a file
+Test case “ Hello,txt”
+“Welcome to saveetha School of Engineering”
+
+
+Ans:
+
+def count_elements_in_file(filename):
+    spaces = 0
+    lines = 0
+    vowels = 0
+    consonants = 0
+
+    # Define the set of vowels
+    vowel_set = {'a', 'e', 'i', 'o', 'u'}
+
+    try:
+        with open(filename, 'r') as file:
+            for line in file:
+                lines += 1
+                spaces += line.count(' ')
+                for char in line:
+                    if char.lower() in vowel_set:
+                        vowels += 1
+                    elif char.isalpha():
+                        consonants += 1
+    except FileNotFoundError:
+        print("File not found.")
+
+    return spaces, lines, vowels, consonants
+
+# Test cases
+test_files = ["Hello.txt", "Welcome to Saveetha School of Engineering"]
+
+for filename in test_files:
+    spaces, lines, vowels, consonants = count_elements_in_file(filename)
+    print(f"\nFile: {filename}")
+    print("Spaces:", spaces)
+    print("Lines:", lines)
+    print("Vowels:", vowels)
+    print("Consonants:", consonants)
+
+
+
+
+
+
+
+
+
+
+
+29
+Print the pattern,
+0.1
+0.1 0.2
+0.1 0.2 0.3
+0.1 0.2 0.3 0.4
+
+Ans:
+
+rows = 4
+
+for i in range(1, rows + 1):
+    for j in range(1, i + 1):
+        print("{:.1f}".format(j * 0.1), end=" ")
+    print()
+
+
+
+
+
+
+
+
+
+
+30
+Write a Program to find row, column and diagonal sum in Matrix
+a = [[1, 2, 3],
+[4, 5, 6],
+[7, 8, 9]]
+o/p:
+Sum of 1 row: 6
+Sum of 2 row: 15
+Sum of 3 row: 24
+Sum of 1 column: 12
+Sum of 2 column: 15
+Sum of 3 column: 18
+Diagonal sum 15"
+
+Ans:
+
+def matrix_sum(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    # Calculate row sums
+    for i in range(rows):
+        row_sum = sum(matrix[i])
+        print(f"Sum of {i+1} row:", row_sum)
+
+    # Calculate column sums
+    for j in range(cols):
+        col_sum = sum(matrix[i][j] for i in range(rows))
+        print(f"Sum of {j+1} column:", col_sum)
+
+    # Calculate diagonal sum
+    diag_sum = sum(matrix[i][i] for i in range(min(rows, cols)))
+    print("Diagonal sum:", diag_sum)
+
+# Given matrix
+a = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Calculate and print sums
+matrix_sum(a)
+
+
+
+
+
+
+
+
+
+
+
+
+
+def find_sum(matrix):
+    num_rows = len(matrix)
+    num_cols = len(matrix[0])
+    row_sums = [sum(row) for row in matrix]
+    col_sums = [sum(col) for col in zip(*matrix)]
+
+    main_diag_sum = sum(matrix[i][i] for i in range(min(num_rows, num_cols)))
+
+    return row_sums, col_sums, main_diag_sum
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+row_sums, col_sums, main_diag_sum = find_sum(matrix)
+
+print("Row Sums:", row_sums)
+print("Column Sums:", col_sums)
+print("Main Diagonal Sum:", main_diag_sum)
+
+
+
+
+
+31
+"Find the Mean, Median and Mode of the array of numbers? Sample Input:
+Array of elements = {16, 18, 27, 16, 23, 21, 19} Sample Output:
+Mean = 20
+Median = 19
+Mode = 16
+Test cases:
+1. Array of elements = {26, 28, 37, 26, 33, 31, 29}
+2. Array of elements = {1.6, 1.8, 2.7, 1.6, 2.3, 2.1, .19}
+3. Array of elements = {0, 160, 180, 270, 160, 230, 210, 190, 0}
+4. Array of elements = {20, 18, 18, 27, 16, 27, 27, 19, 20}
+5. Array of elements = {1000, 100, 1000, 100, 1000, 100, 1000, 100, 1000}"
+
+Ans:
+
+from statistics import mean, median, mode
+
+def calculate_stats(array):
+    mean_value = mean(array)
+    median_value = median(array)
+    mode_value = mode(array)
+    return mean_value, median_value, mode_value
+
+# Sample Input
+array = [16, 18, 27, 16, 23, 21, 19]
+
+# Calculate and print statistics
+mean_value, median_value, mode_value = calculate_stats(array)
+print("Mean =", mean_value)
+print("Median =", median_value)
+print("Mode =", mode_value)
+
+# Test cases
+test_cases = [
+    [26, 28, 37, 26, 33, 31, 29],
+    [1.6, 1.8, 2.7, 1.6, 2.3, 2.1, 0.19],
+    [0, 160, 180, 270, 160, 230, 210, 190, 0],
+    [20, 18, 18, 27, 16, 27, 27, 19, 20],
+    [1000, 100, 1000, 100, 1000, 100, 1000, 100, 1000]
+]
+
+for i, test_case in enumerate(test_cases):
+    mean_value, median_value, mode_value = calculate_stats(test_case)
+    print(f"\nTest Case {i+1}:")
+    print("Mean =", mean_value)
+    print("Median =", median_value)
+    print("Mode =", mode_value)
+
+
+
+
+
+
+
+
+
+
+
+32
+Write a program to find the number of student users in the college, get the total users, staff
+users detail from the client. Note for every 3 staff user there is one Non-teaching staff user
+assigned by default.
+Sample Input:
+Total Users: 856
+Staff Users: 126
+Sample Output:
+Student Users: 688
+Test Cases:
+1. Total User: 0
+2. Total User: -143
+3. Total User: 1026, Staff User: 1026
+4. Total User: 450, Staff User: 540
+5. Total User: 600, Staff User: 450
+
+Ans:
+
+def calculate_student_users(total_users, staff_users):
+    non_teaching_staff = staff_users // 3
+    student_users = total_users - staff_users - non_teaching_staff
+    return student_users
+
+def main():
+    try:
+        total_users = int(input("Total Users: "))
+        staff_users = int(input("Staff Users: "))
+        
+        if total_users < 0 or staff_users < 0:
+            print("Invalid input. Users cannot be negative.")
+        elif total_users < staff_users:
+            print("Invalid input. Total users cannot be less than staff users.")
+        else:
+            student_users = calculate_student_users(total_users, staff_users)
+            print("Student Users:", student_users)
+    except ValueError:
+        print("Invalid input. Please enter valid integer values for users.")
+
+# Test cases
+test_cases = [
+    (0, 0),
+    (-143, 0),
+    (1026, 1026),
+    (450, 540),
+    (600, 450)
+]
+
+for i, (total_users, staff_users) in enumerate(test_cases):
+    print("\nTest Case", i+1)
+    print("Total Users:", total_users)
+    print("Staff Users:", staff_users)
+    main()
+
+
+
+
+
+
+
+
+
+
+
+33
+Find the year of the given date is leap year or not
+Sample Input:
+Enter Date : 04/11/1947
+Sample Output:
+Given year is Non Leap Year
+Test cases:
+a) 04/11/19.47
+b) 11/15/1936
+c) 31/45/1996
+d) 64/09/1947
+e) 00/00/2000
+
+Ans:
+
+def is_leap_year(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
+
+def main():
+    try:
+        date = input("Enter Date (DD/MM/YYYY): ")
+        year = int(date.split("/")[-1])
+
+        if is_leap_year(year):
+            print("Given year is Leap Year")
+        else:
+            print("Given year is Non Leap Year")
+    except ValueError:
+        print("Invalid input. Please enter date in the format DD/MM/YYYY.")
+
+# Test cases
+test_cases = ["04/11/19.47", "11/15/1936", "31/45/1996", "64/09/1947", "00/00/2000"]
+
+for i, date in enumerate(test_cases):
+    print("\nTest Case", chr(ord('a') + i) + ")")
+    print("Enter Date:", date)
+    main()
+
+
+
+
+
+
+
+
+
+
+
+34
+Write a program to print the special characters separately and print the number of Special characters in the line?
+Sample Input:
+Welcome to &^23(&@ SSE
+
+Ans:
+
+def count_and_print_special_characters(input_string):
+    special_characters = ''
+    count = 0
+
+    for char in input_string:
+        if not char.isalnum() and char != ' ':
+            special_characters += char
+            count += 1
+
+    print("Special Characters:", special_characters)
+    print("Number of Special Characters:", count)
+
+# Sample Input
+input_string = "Welcome to &^23(&@ SSE"
+
+# Print special characters and their count
+count_and_print_special_characters(input_string)
+
+
+
+
+
+
+
+
+
+
+35
+Write a program to enter the marks of a student in four subjects. Then calculate the total and aggregate, display the grade obtained by the student. If the student scores an aggregate greater than 75%, then the grade is Distinction. If aggregate is 60>= and <75, then the grade is First Division. If aggregate is 50 >= and <60, then the grade is Second Division. If aggregate is 40>= and <50, then the grade is Third Division. Else the grade is Fail.
+Sample Input & Output:
+Enter the marks in python: 90
+Enter the marks in c programming: 91
+Enter the marks in Mathematics: 92
+Enter the marks in Physics: 93
+Total= 366
+Aggregate = 91.5
+DISTINCTION
+Test cases:
+18, 76,93,65
+73,78,79,75
+98,106,120,95
+96,73, -85,95
+78,59.8,76,79
+
+Ans:
+
+def calculate_grade(marks):
+    total = sum(marks)
+    aggregate = total / len(marks)
+
+    if aggregate > 75:
+        return "DISTINCTION"
+    elif 60 <= aggregate < 75:
+        return "First Division"
+    elif 50 <= aggregate < 60:
+        return "Second Division"
+    elif 40 <= aggregate < 50:
+        return "Third Division"
+    else:
+        return "Fail"
+
+def main():
+    try:
+        subjects = ["Python", "C Programming", "Mathematics", "Physics"]
+        marks = []
+
+        for subject in subjects:
+            mark = float(input(f"Enter the marks in {subject}: "))
+            if mark < 0 or mark > 100:
+                print("Invalid marks. Marks should be between 0 and 100.")
+                return
+            marks.append(mark)
+
+        total = sum(marks)
+        aggregate = total / len(marks)
+        grade = calculate_grade(marks)
+
+        print("Total =", total)
+        print("Aggregate =", aggregate)
+        print(grade)
+    except ValueError:
+        print("Invalid input. Please enter valid marks as numbers.")
+
+# Test cases
+test_cases = [
+    [18, 76, 93, 65],
+    [73, 78, 79, 75],
+    [98, 106, 120, 95],
+    [96, 73, -85, 95],
+    [78, 59.8, 76, 79]
+]
+
+for i, marks in enumerate(test_cases):
+    print("\nTest Case", i+1)
+    for j, mark in enumerate(marks):
+        print(f"Enter the marks in Subject {j+1}: {mark}")
+    main()
+
+
+
+
+
+
+
+
+
+
+
+36
+Write a program to calculate the factorial of number using recursive function.
+Sample Input & Output:
+Enter the value of n: 6
+Sample Input & Output:
+The factorial of 6 is: 720
+
+Test cases:
+a) N = 0
+b) N = -5
+c) N = 1
+d) N = M
+e) N = %
+
+Ans:
+
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+def main():
+    try:
+        n = int(input("Enter the value of n: "))
+        if n < 0:
+            print("Factorial is not defined for negative numbers.")
+        else:
+            result = factorial(n)
+            print(f"The factorial of {n} is: {result}")
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+
+# Test cases
+test_cases = [0, -5, 1, 'M', '%']
+
+for i, n in enumerate(test_cases):
+    print("\nTest Case", chr(ord('a') + i) + ")")
+    print("Enter the value of n:", n)
+    main()
+
+
+
+
+
+
+
+
+
+
+
+37
+Python Program to Find the Nth Largest Number in a List
+Sample Input:
+List : {14, 67, 48, 23, 5, 62}
+N = 4
+Sample Output:
+4th Largest number: 23
+
+Test cases:
+N = 0
+N = -5
+N = 1
+N = M
+N = %
+
+Ans:
+
+
+
+
+
+
+
+
+
+
+38
+Write a Python Program to remove duplicates numbers entirely from the sorted array
+Sample Input:
+Array = {15, 14, 25, 14, 32, 14, 31}
+Sample Output:
+Sorted Array = {15, 25, 31, 32}
+Test cases:
+1. {16, 16, 16 16, 16}
+2. {0, 0, 0, 0}
+3. {-12, -78, -35, -42}
+4. {1,2,3,7,8,9,4,5,6}
+5. {1-2,2-3,3-4,4-5,5-6}
+
+Ans:
+
+def remove_duplicates(array):
+    unique_array = []
+    previous = None
+
+    for num in array:
+        if num != previous:
+            unique_array.append(num)
+            previous = num
+
+    return unique_array
+
+def main():
+    try:
+        array = [int(x) for x in input("Array: ").split(',')]
+        sorted_array = sorted(remove_duplicates(array))
+        print("Sorted Array:", sorted_array)
+    except ValueError:
+        print("Invalid input. Please enter integers separated by commas.")
+
+# Test cases
+test_cases = [
+    [16, 16, 16, 16, 16],
+    [0, 0, 0, 0],
+    [-12, -78, -35, -42],
+    [1, 2, 3, 7, 8, 9, 4, 5, 6],
+    [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
+]
+
+for i, array in enumerate(test_cases):
+    print("\nTest Case", i+1)
+    print("Array:", array)
+    main()
+
+
+
+
+
+
+
+
+
+
+
+
+39
+Write a program to merge two sorted lists to the third list.
+Input: list1 = [1,2,4], list2 = [0,3,6]
+Output: [0,1,2,3,4,6]
+Test Case
+1. Find the 2nd largest number
+2. Find the 4th smallest number
+3. Print the numbers in reverse order
+4. Sum and Average of merged list
+
+Ans:
+def merge_sorted_lists(list1, list2):
+    merged_list = []
+    i = j = 0
+
+    while i < len(list1) and j < len(list2):
+        if list1[i] < list2[j]:
+            merged_list.append(list1[i])
+            i += 1
+        else:
+            merged_list.append(list2[j])
+            j += 1
+
+    while i < len(list1):
+        merged_list.append(list1[i])
+        i += 1
+
+    while j < len(list2):
+        merged_list.append(list2[j])
+        j += 1
+
+    return merged_list
+
+def main():
+    list1 = [1, 2, 4]
+    list2 = [0, 3, 6]
+    
+    # Merge sorted lists
+    merged_list = merge_sorted_lists(list1, list2)
+    print("Merged List:", merged_list)
+
+    # Find the 2nd largest number
+    print("2nd Largest number:", merged_list[-2])
+
+    # Find the 4th smallest number
+    print("4th Smallest number:", merged_list[3])
+
+    # Print numbers in reverse order
+    print("Numbers in reverse order:", merged_list[::-1])
+
+    # Sum and Average of merged list
+    total = sum(merged_list)
+    average = total / len(merged_list)
+    print("Sum of merged list:", total)
+    print("Average of merged list:", average)
+
+# Test the main function
+main()
+
+
+
+
+
+
+
+
+
+
+
+40
+"Find the Mth maximum number and Nth minimum number in an array and then find the sum of it and difference of it.
+Sample Input:
+Array of elements = {14, 16, 87, 36, 25, 89, 34}
+M = 1
+N = 3
+Sample Output:
+1st Maximum Number = 89 3rd Minimum Number = 25 Sum = 114
+Difference = 64 Test cases:
+1. {16, 16, 16 16, 16}, M = 0, N = 1
+2. {0, 0, 0, 0}, M = 1, N = 2
+3. {-12, -78, -35, -42, -85}, M = 3 , N = 3
+4. {15, 19, 34, 56, 12}, M = 6 , N = 3
+5. {85, 45, 65, 75, 95}, M = 5 , N = 7"
+
+Ans:
